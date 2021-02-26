@@ -23,4 +23,14 @@ public class Fraction {
     public float getJmenovatel() {
         return jmenovatel;
     }
+
+    public float getVysledek() {
+        float vysledek;
+        vysledek = citatel/jmenovatel;
+        return vysledek;
+    }
+
+    public String vypisZlomek() {
+        return citatel +"/" +jmenovatel;
+    }
 }

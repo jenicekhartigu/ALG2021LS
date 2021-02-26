@@ -7,5 +7,6 @@ public class FractionApp {
         System.out.println(prvniZlomek.getCitatel());
         
         System.out.println(prvniZlomek.getJmenovatel());
+        System.out.println(prvniZlomek.vypisZlomek());
     }
 }
