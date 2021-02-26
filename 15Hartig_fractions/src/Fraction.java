@@ -1,6 +1,6 @@
 public class Fraction {
-    public float citatel;
-    public float jmenovatel;
+    private float citatel;
+    private float jmenovatel;
 
     public Fraction(float aCitatel, float aJmenovatel)
     {
