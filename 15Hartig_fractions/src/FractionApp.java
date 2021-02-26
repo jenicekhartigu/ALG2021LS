@@ -8,5 +8,6 @@ public class FractionApp {
         
         System.out.println(prvniZlomek.getJmenovatel());
         System.out.println(prvniZlomek.vypisZlomek());
+        System.out.println(prvniZlomek.getVysledek());
     }
 }
