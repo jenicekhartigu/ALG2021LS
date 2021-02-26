@@ -33,4 +33,8 @@ public class Fraction {
     public String vypisZlomek() {
         return citatel +"/" +jmenovatel;
     }
+
+    public String vypisZlomekHezky() {
+        return citatel +"\n------\n" +jmenovatel;
+    }
 }
