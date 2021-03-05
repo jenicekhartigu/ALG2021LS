@@ -1,37 +1,30 @@
 public class Fraction {
-    private double citatel;
-    private double jmenovatel;
+    private double citatel; // > this.zlomek[0]
+    private double jmenovatel; // > this.zlomek[1]
+
+    //private double zlomek[]  = new double [2];
 
     // CONSTRUCTOR
     // --------------------------------------------------------------------------------
-    public Fraction() {
-        setCit(0);
-        setJme(0);
-    }
 
-    public Fraction(double aCitatel, double aJmenovatel) {
-        setCit(aCitatel);
-        setJme(aJmenovatel);
-    }
-
-    // GETTERY SETTERY
-    // ----------------------------------------------------------------------------
-    /**
-     * Setter pro hodnotu citatel<p>
-     * nastavení hodnoty citatel
-     */
-    public void setCit(double citatel) {
+    public Fraction(double citatel, double jmenovatel) {
+        isValid(jmenovatel);
         this.citatel = citatel;
-    }
-
-    /**
-     * Setter pro hodnotu jmenovatel<p>
-     * nastavení hodnoty jmenovatel
-     */
-    public void setJme(double jmenovatel) {
         this.jmenovatel = jmenovatel;
+        simpFrac();
     }
 
+    public Fraction(String zlomek) {
+        String[] frac = zlomek.split("/");
+        isValid(Double.parseDouble(frac[1]));
+        this.citatel = Double.parseDouble(frac[0]);
+        this.jmenovatel = Double.parseDouble(frac[1]);
+        simpFrac();
+    }
+
+    // GETTERY
+    // ----------------------------------------------------------------------------
+    
     /**
      * Getter pro hodnotu citatel<p>
      * @return citatel v datovém typu Double
@@ -51,8 +44,8 @@ public class Fraction {
     // FUNKCE
     // -------------------------------------------------------------------------------------
 
-    private void isValid() {
-        if (this.getJme() == 0) {
+    private void isValid(double jmenovatel) {
+        if (jmenovatel == 0) {
             throw new IllegalArgumentException("\nNeplatny zlomek, deleni nulou\n" + getCit() + "/" + getJme() + " <- NULA\n");
         }
     }
@@ -70,7 +63,6 @@ public class Fraction {
      * @return zlomek v datovém typu String
      */
     public String toString() {
-        this.isValid();
         return this.getCit() + " " + this.getJme();
     }
 
@@ -92,12 +84,9 @@ public class Fraction {
      * @return hodnota zlomku v datovém typu Double
      */
     public double getValue() {
-        this.isValid();
         double res;
         res = this.getCit() / this.getJme();
-        return res;
-
-        
+        return res; 
     }
 
     /**
@@ -113,8 +102,7 @@ public class Fraction {
      * citatel / jmenovatel
      */
     public String prntFrac() {
-        this.isValid();
-        return this.getCit() + "/" + this.getJme();
+        return this.citatel + "/" + this.jmenovatel;
     }
 
     /**
@@ -132,7 +120,6 @@ public class Fraction {
      * jmenovatel
      */
     public String prntFracNice() {
-        this.isValid();
         String cit = String.valueOf(this.getCit());
         String jme = String.valueOf(this.getJme());
         int lenCit = cit.length();
@@ -148,7 +135,7 @@ public class Fraction {
     /**
      * 
      * Metoda pro zjištění NSD<p>
-     * NSD - Nejmenší společný dělitel<p>
+     * NSD - Největší společný dělitel<p>
      * Pro výpis:
      * <blockquote>
      * <pre>
@@ -159,9 +146,8 @@ public class Fraction {
      * @return NSD v datovém typu String<p>
      */
     public String nsd() {
-        this.isValid();
-        double a = this.getCit();
-        double b = this.getJme();
+        double a = this.citatel;
+        double b = this.jmenovatel;
         if (a < 1 || b < 1)
             throw new IllegalArgumentException("Citatel nebo jmenovatel je mensi nez 1");
         while (b != 0) {
@@ -189,20 +175,34 @@ public class Fraction {
      * 
      * @return NSD v datovém typu Double<p>
      */
-    public double nsdValue() {
-        this.isValid();
-        double a = this.getCit();
-        double b = this.getJme();
-        if (a < 1 || b < 1)
-            throw new IllegalArgumentException("Citatel nebo jmenovatel je mensi nez 1");
+
+    public static double nsdValue(double a, double b) {
+        double tmp;
         while (b != 0) {
-            double tmp = a;
+            tmp = a;
             a = b;
             b = tmp % b;
         }
-        if (a == 1) {
-            return 0;
-        }
         return a;
     }
+
+    private void simpFrac() {
+        double nsd = nsdValue(citatel, jmenovatel);
+        citatel = citatel / nsd;
+        jmenovatel = jmenovatel / nsd;
+    }
+
+    public Fraction simpNewFrac() {
+        double nsd = nsdValue(citatel, jmenovatel);
+        double cit = citatel / nsd;
+        double jme = jmenovatel / nsd;
+        Fraction fracTmp = new Fraction(cit, jme);
+        return fracTmp;
+    }
+
+    public String getSimplifiedFrac() {
+        simpFrac();
+        return prntFrac();
+    }
+
 }
