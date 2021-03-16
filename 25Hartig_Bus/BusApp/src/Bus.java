@@ -29,7 +29,7 @@ public class Bus {
 
 
     public String toString() {
-        return "Autobus cislo "+ cisLinky +" spolecnosti "+ nazSpol +" s poctem sedadel "+ pocSed +" veze "+ pocCes +" cestujicich \n";
+        return "Autobus  cislo "+ cisLinky +" spolecnosti "+ nazSpol +" s poctem sedadel "+ pocSed +" veze "+ pocCes +" cestujicich \n";
     }
 
     public void setNazSpol(String nazSpol) {
