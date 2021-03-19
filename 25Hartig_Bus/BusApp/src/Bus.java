@@ -2,29 +2,27 @@ public class Bus {
     private String nazSpol;
     private int cisLinky;
     private int pocSed;
-    private int pocCes;
+    private int pocCes = 0;
 
     public Bus() {
         nazSpol = "Bez společnosti";
         cisLinky = 0;
         pocSed = 40;
-        pocCes = 0;
     }
 
-    public Bus(String nazSpol, int cisLinky, int pocSed, int pocCes) {
+    public Bus(String nazSpol, int cisLinky, int pocSed) {
         this.nazSpol = nazSpol;
         this.cisLinky = cisLinky;
-        jeDostSedadel(pocSed, pocCes);
+        //jeDostSedadel(pocSed, pocCes);
         this.pocSed = pocSed;
-        this.pocCes = pocCes;
     }
-    
+    /*
     private void jeDostSedadel(int pocSed, int pocCes) {
         if (pocCes > pocSed){
             throw new IllegalArgumentException("\n Pocet cestujicich je vetsi nez pocet sedadel\n");
         }
     }
-
+    */
     
 
 
@@ -61,6 +59,10 @@ public class Bus {
     public void vystoupeniPoc(int pocet) {
         if(pocet>pocCes){
             System.out.println("Tolik lidi v autobuse ani neni.");
+
+
+
+            
             vystoupeniALL();            
         } else {
             pocCes = pocCes - pocet;
@@ -73,6 +75,18 @@ public class Bus {
         System.out.printf("Z autobusu vystoupilo %d cestujich\n", pocCes);
         pocCes = 0;
 
+    }
+
+    public String getNazSpol() {
+        return nazSpol;
+    }
+
+    public int getCisLinky() {
+        return cisLinky;
+    }
+
+    public int getPocSed() {
+        return pocSed;
     }
     
 }

@@ -6,7 +6,7 @@ public class BusApp {
 
         System.out.println("Hello, World!");
 
-        Bus mujBus = new Bus("Arriva", 69, 40, 0);
+        Bus mujBus = new Bus("Arriva", 69, 40);
 
         for(int i = 0; i < 5;i++) {
             if (i == 4) {
