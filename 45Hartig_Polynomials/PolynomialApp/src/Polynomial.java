@@ -8,19 +8,7 @@ public class Polynomial {
         this.coefR = Arrays.copyOf(coefR, coefR.length);
         
     }
-    /*
-    public Polynomial(double[] c, boolean reverted) {
-        if(reverted) {
-            this.coefR = Arrays.copyOf(c, c.length);
-        } else {
-            double[] coefR = new double[c.length];
-            for (int i = 0 ; i< coefR.length ; i++) {
-                coefR[i] = c[c.length - 1 - i];
-            }
-            this.coefR = coefR;
-        }
-    }
-    */
+
     public static Polynomial getInstance(double...coef) {
         double[] coefR = new double[coef.length];
         for (int i = 0 ; i< coefR.length ; i++) {
@@ -33,12 +21,10 @@ public class Polynomial {
         return new Polynomial(coefR);
     }
 
-
     public Polynomial derivate() {
         double[] derPoleR = new double[this.coefR.length - 1];
         for(int i = 0; i < derPoleR.length; i++) {
             derPoleR[i] = this.coefR[i+1] * (i+1);
-            System.out.println(derPoleR[i]+ "" + coefR[i]);
         }
         return new Polynomial(derPoleR);
     }
