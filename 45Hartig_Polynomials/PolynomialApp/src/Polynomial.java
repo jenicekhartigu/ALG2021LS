@@ -34,6 +34,20 @@ public class Polynomial {
     }
 
 
+    public Polynomial derivate() {
+        double[] derPoleR = new double[this.coefR.length - 1];
+        for(int i = 0; i < derPoleR.length; i++) {
+            derPoleR[i] = this.coefR[i+1] * (i+1);
+            System.out.println(derPoleR[i]+ "" + coefR[i]);
+        }
+        return new Polynomial(derPoleR);
+    }
+
+    //defenzivni kopie
+    public double[] getAllCoefR() {
+        return Arrays.copyOf(coefR, coefR.length);
+    }
+
     @Override
     public String toString() {
         return "Polynomial [coefR=" + Arrays.toString(coefR) + "]";
