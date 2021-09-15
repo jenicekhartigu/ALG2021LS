@@ -1,0 +1,10 @@
+petr,1536,AJ
+marek,45454,AJ
+jan,899798,NJ
+ondra,4566,NJ
+katka,456,AJ
+ivan,789,AJ
+ales,9885,NJ
+Tomas,8978,NJ
+Andrea,695,AJ
+
